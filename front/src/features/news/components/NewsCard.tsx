@@ -19,7 +19,7 @@ interface Props {
   deleteNews: () => void;
 }
 
-const NewsCard: React.FC<Props> = ({ image, date, id, title, description, deleteNews }) => {
+const NewsCard: React.FC<Props> = ({ image, date, id, title, deleteNews }) => {
   let productImage = null;
   if (image) {
     productImage = 'http://127.0.0.1:8000' + '/' + image;
@@ -42,9 +42,6 @@ const NewsCard: React.FC<Props> = ({ image, date, id, title, description, delete
                 </Typography>
                 <Typography variant='h5' color='text.black'>
                   <strong>{title}</strong>
-                </Typography>
-                <Typography variant='h6' color='text.secondary'>
-                  <strong>{description}</strong>
                 </Typography>
               </Grid>
               {cardMed}

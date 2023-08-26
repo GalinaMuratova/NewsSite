@@ -1,0 +1,5 @@
+{
+
+  "ignore": ["./dbComments.json", "./dbNews.json"]
+
+}

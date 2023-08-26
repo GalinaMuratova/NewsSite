@@ -1,6 +1,7 @@
 import express from 'express';
 import fileDbNews from "../fileDb/fileDbNews";
 import {NewsWithoutId} from "../types";
+import {imagesUpload} from "../multer";
 const newsRouter = express.Router();
 
 newsRouter.get('/', async (req, res)=> {
@@ -19,7 +20,7 @@ newsRouter.get('/:id', async (req, res)=> {
     res.send(oneNews);
 });
 
-newsRouter.post('/', async (req, res)=> {
+newsRouter.post('/', imagesUpload.single('image'),async (req, res)=> {
     if (!req.body.title) {
         res.status(400).send({"error": "Field title"})
     } else if (!req.body.description) {
@@ -29,7 +30,7 @@ newsRouter.post('/', async (req, res)=> {
     const oneNews: NewsWithoutId = {
         title: req.body.title,
         description:req.body.description,
-        image: req.body.image
+        image: req.file ? 'images/' + req.file.filename : null
     };
     const saveNews = await fileDbNews.addItem(oneNews);
     res.send(saveNews);

@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch} from '../../app/hooks';
-import { Simulate } from 'react-dom/test-utils';
 import { useSelector } from 'react-redux';
-import { selectProducts } from './newsSlice';
+import { selectNews} from './newsSlice';
 import { deleteNews, fetchNews } from './newsThunk';
 import NewsCard from './components/NewsCard';
 import { Button, Grid, styled, Typography } from '@mui/material';
@@ -17,7 +16,7 @@ const Link = styled(NavLink)({
 });
 const News = () => {
   const dispatch = useAppDispatch();
-  const news = useSelector(selectProducts);
+  const news = useSelector(selectNews);
 
   useEffect(() => {
     dispatch(fetchNews());

@@ -11,3 +11,16 @@ export interface NewsMutation {
   description:string;
   image:File | null;
 }
+
+export interface Comment {
+  id: string;
+  idNews: string;
+  author: string;
+  text:string
+}
+
+export interface CommentWithoutId {
+  idNews: string;
+  author: string;
+  text:string
+}

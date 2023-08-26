@@ -22,8 +22,13 @@ const NewsForm = () => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await dispatch(createNews(state));
-    navigate('/');
+    setState((prevState) =>({
+      title:'',
+      image: null,
+      description: ''
+    }));
     await dispatch(fetchNews());
+    navigate('/');
   };
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
