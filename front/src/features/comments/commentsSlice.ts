@@ -6,17 +6,13 @@ import { Comment } from '../../types';
 interface CommentsState {
   items: Comment [];
   fetchLoading: boolean;
-  fetchLoadingOne: boolean;
   createLoading: boolean;
-  item: Comment | null
 }
 
 const initialState: CommentsState = {
   items: [],
   fetchLoading: false,
-  fetchLoadingOne: false,
   createLoading: false,
-  item: null,
 };
 
 export const commentsSlice = createSlice({
@@ -51,5 +47,4 @@ export const commentsSlice = createSlice({
 
 export const selectComments = (state: RootState) => state.commentsReducer.items;
 export const selectCreateLoading = (state:RootState) => state.commentsReducer.createLoading;
-export const selectOneComment = (state: RootState) => state.commentsReducer.item;
 export const commentsReducer = commentsSlice.reducer;
