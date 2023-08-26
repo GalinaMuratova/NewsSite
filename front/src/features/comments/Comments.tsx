@@ -18,8 +18,11 @@ const Comments = () => {
   }, [dispatch]);
 
   const onDelete = async (id: string) => {
-    await dispatch(deleteComment(id));
-    await dispatch(fetchComments());
+    const confirmed = window.confirm('Are you sure you want to delete this comment?');
+    if (confirmed) {
+      await dispatch(deleteComment(id));
+      await dispatch(fetchComments());
+    }
   };
 
   return (

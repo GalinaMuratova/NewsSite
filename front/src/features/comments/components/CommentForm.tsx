@@ -11,7 +11,7 @@ const CommentForm = () => {
   const [state, setState] = useState<CommentWithoutId>({
     text:'',
     author:'',
-    idNews:''
+    idNews: ''
   });
 
   const onSubmit = async (e: React.FormEvent) => {
@@ -19,16 +19,20 @@ const CommentForm = () => {
     await dispatch(createComment(state));
     setState((prevState) => ({
       author:'',
-      idNews:'',
-      text:''
+      text:'',
+      idNews:''
     }));
     await dispatch(fetchComments());
   };
+  let newId = ''
+  if (id) {
+    newId = id.toString()
+  }
 
-  const inputCHange = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const inputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} =e.target;
     setState(prevState => {
-      return {...prevState, [name]: value};
+      return {...prevState, [name]: value, idNews: newId};
     });
   };
 
@@ -44,7 +48,7 @@ const CommentForm = () => {
               id="author"
               label="Author"
               value={state.author}
-              onChange={inputCHange}
+              onChange={inputChange}
               name="author"
             />
           </Grid>
@@ -53,18 +57,8 @@ const CommentForm = () => {
               id="text"
               label="Your comment"
               value={state.text}
-              onChange={inputCHange}
+              onChange={inputChange}
               name="text"
-              required
-            />
-          </Grid>
-          <Grid item xs>
-            <TextField
-              id="idNews"
-              label="Id News"
-              value={state.idNews}
-              onChange={inputCHange}
-              name="idNews"
               required
             />
           </Grid>

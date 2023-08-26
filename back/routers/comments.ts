@@ -12,7 +12,6 @@ commentsRouter.get('/', async (req, res)=> {
 commentsRouter.get('/:id', async (req, res)=> {
     const comments = await fileDbComments.getItems();
     const comment = comments.find(item => item.id === req.params.id);
-
     if (!comment) {
         res.sendStatus(404);
         return;
