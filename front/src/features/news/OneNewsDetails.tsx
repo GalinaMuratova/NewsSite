@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../app/hooks';
-import { fetchNews, fetchOneNews } from './newsThunk';
+import {fetchOneNews } from './newsThunk';
 import { useSelector } from 'react-redux';
 import { selectOneNews } from './newsSlice';
 import NewsDetailsBlock from './components/NewsDetailsBlock';
+import Comments from '../comments/Comments';
 
 const OneNewsDetails = () => {
   const { id }= useParams();
@@ -25,6 +26,7 @@ const OneNewsDetails = () => {
   return (
     <>
       {details}
+      <Comments />
     </>
   );
 };
