@@ -1,14 +1,14 @@
 export interface News {
-    id: string;
     title:string;
     description:string;
-    image:string|null
+    image:string;
     date: string;
+    id: string;
 }
 export interface NewsWithoutId {
     title:string;
     description:string;
-    image:string|null
+    image:string
 }
  export interface Comment {
     id: string;
