@@ -1,12 +1,12 @@
-import { promises as fs} from 'fs';
+import {promises as fs} from 'fs';
 import { randomUUID } from "crypto";
-import {News, NewsWithoutId} from "../types";
+import {Comment, CommentWithoutId} from "../types";
 
-const pathName = './dbNews.json';
+const pathName = './dbComments.json';
 
-let data: News[] = [];
+let data: Comment[] = [];
 
-const fileDbNews = {
+const fileDbComments = {
     async init () {
         try {
             const fileContents = await fs.readFile(pathName);
@@ -19,15 +19,12 @@ const fileDbNews = {
     async getItems() {
         return data;
     },
-    async addItem(item: NewsWithoutId) {
-        const now = new Date();
-        const createdAt: string = now.toISOString();
-        const newsNew: News = {
+    async addItem(item: CommentWithoutId) {
+        const newComment: Comment = {
             ...item,
-            id: randomUUID(),
-            date: createdAt,
+            id: randomUUID()
         };
-        data.push(newsNew);
+        data.push(newComment);
         await this.save();
     },
     async save() {
@@ -42,4 +39,4 @@ const fileDbNews = {
     }
 }
 
-export default fileDbNews;
+export default fileDbComments;
