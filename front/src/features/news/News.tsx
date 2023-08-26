@@ -26,10 +26,7 @@ const News = () => {
   const onDelete = async (id: string) => {
     await dispatch(deleteNews(id));
     await dispatch(fetchNews());
-    console.log('delete')
   };
-
-
   return (
     <>
       <Grid container direction="column" spacing={2}>

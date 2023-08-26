@@ -48,4 +48,5 @@ export const newsSlice = createSlice({
 });
 
 export const selectProducts = (state: RootState) => state.newsReducer.items;
+export const selectCreateLoading = (state:RootState) => state.newsReducer.createLoading;
 export const newsReducer = newsSlice.reducer;
