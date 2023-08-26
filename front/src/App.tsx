@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import {CssBaseline} from "@mui/material";
+import { Container, CssBaseline } from '@mui/material';
 import AppToolbar from './components/UI/AppToolbar/AppToolbar';
 import News from './features/news/News';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
@@ -12,7 +13,14 @@ function App() {
           <AppToolbar />
         </header>
         <main>
-          <News></News>
+          <Container>
+            <Routes>
+              <Route path='/' element={(<News />)}/>
+              <Route path='/news' element={(<News />)}/>
+              <Route path='/news/create' element={(<div>Add</div>)} />
+              <Route path='/news/:id' element={(<div>More info</div>)}/>
+            </Routes>
+          </Container>
         </main>
       </>
   );
