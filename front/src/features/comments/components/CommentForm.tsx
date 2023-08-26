@@ -3,9 +3,11 @@ import { useAppDispatch } from '../../../app/hooks';
 import { CommentWithoutId } from '../../../types';
 import { createComment, fetchComments } from '../commentsThunk';
 import { Button, Grid, TextField } from '@mui/material';
+import { useParams } from 'react-router-dom';
 
 const CommentForm = () => {
   const dispatch = useAppDispatch();
+  const {id} =useParams();
   const [state, setState] = useState<CommentWithoutId>({
     text:'',
     author:'',
@@ -49,10 +51,11 @@ const CommentForm = () => {
           <Grid item xs>
             <TextField
               id="text"
-              label="text"
+              label="Your comment"
               value={state.text}
               onChange={inputCHange}
               name="text"
+              required
             />
           </Grid>
           <Grid item xs>
@@ -62,6 +65,7 @@ const CommentForm = () => {
               value={state.idNews}
               onChange={inputCHange}
               name="idNews"
+              required
             />
           </Grid>
           <Grid item xs>

@@ -9,14 +9,16 @@ interface Props {
   deleteNews: () => void;
 }
 const CommentBlock: React.FC<Props> = ({author, text,deleteNews}) => {
+  let authorNew =  <Typography variant="h5" gutterBottom>{author}</Typography>;
+  if (author === '') {
+    authorNew = <Typography variant="h6" style={{color:'gray'}} gutterBottom>Anonymous</Typography>
+  }
 
   return (
     <Card sx={{ margin: '16px 0' }}>
       <CardContent>
-        <Typography variant="h5" gutterBottom>
-          {author}
-        </Typography>
-        <Typography variant="h6" gutterBottom>
+        {authorNew}
+        <Typography variant="subtitle1" gutterBottom>
           Said: {text}
         </Typography>
         <Button

@@ -2,6 +2,7 @@ import express from 'express';
 import fileDbNews from "../fileDb/fileDbNews";
 import {NewsWithoutId} from "../types";
 import {imagesUpload} from "../multer";
+import fileDbComments from "../fileDb/fileDbComments";
 const newsRouter = express.Router();
 
 newsRouter.get('/', async (req, res)=> {
@@ -40,6 +41,13 @@ newsRouter.delete('/:id', async (req, res)=> {
     const news = await fileDbNews.getItems();
     const oneNews = news.find(item => item.id === req.params.id);
 
+    const comments = await fileDbComments.getItems();
+
+    const commentsWithSameId = comments.filter(item => item.idNews === req.params.id);
+
+    for (const comment of commentsWithSameId) {
+        await fileDbComments.delete(comment.id);
+    }
     if (!oneNews) {
         res.sendStatus(404);
         return;
