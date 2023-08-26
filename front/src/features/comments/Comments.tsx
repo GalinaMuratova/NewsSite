@@ -4,6 +4,8 @@ import { selectComments } from './commentsSlice';
 import { fetchComments } from './commentsThunk';
 import CommentBlock from './components/CommentBlock';
 import { useParams } from 'react-router-dom';
+import CommentForm from './components/CommentForm';
+import { Grid, Typography } from '@mui/material';
 
 const Comments = () => {
   const dispatch = useAppDispatch();
@@ -23,6 +25,12 @@ const Comments = () => {
         }
         return null;
       })}
+      <Grid style={{backgroundColor:'aliceblue', padding: '20px', margin:'20px 0', borderRadius:'8px'}}>
+        <Typography component='h3' variant='h4' style={{textAlign:'center'}}>
+          Add comment
+        </Typography>
+        <CommentForm />
+      </Grid>
     </>
   );
 };
